@@ -4,7 +4,7 @@ import devwooki.study.querydsl.dto.MemberSearchCondition;
 import devwooki.study.querydsl.dto.MemberTeamDTO;
 import devwooki.study.querydsl.entity.Member;
 import devwooki.study.querydsl.entity.Team;
-import devwooki.study.querydsl.jpa.MemberRepository;
+import devwooki.study.querydsl.repository.MemberJpaRepository;
 import jakarta.persistence.EntityManager;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -26,7 +26,7 @@ public class JPAvsQueryDSL {
     @Autowired
     EntityManager em;
     @Autowired
-    MemberRepository jpaRepository;
+    MemberJpaRepository jpaRepository;
 
     @Test
     public void basicTest() throws Exception{

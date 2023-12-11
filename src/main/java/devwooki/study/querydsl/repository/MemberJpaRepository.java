@@ -1,8 +1,6 @@
-package devwooki.study.querydsl.jpa;
+package devwooki.study.querydsl.repository;
 
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.Tuple;
-import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -11,12 +9,9 @@ import devwooki.study.querydsl.dto.MemberTeamDTO;
 import devwooki.study.querydsl.dto.QMemberTeamDTO;
 import devwooki.study.querydsl.entity.Member;
 import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +19,7 @@ import static devwooki.study.querydsl.entity.QMember.member;
 import static devwooki.study.querydsl.entity.QTeam.team;
 
 @Repository
-public class MemberRepository {
+public class MemberJpaRepository {
     // 동시성 문제 발생하는거 ㅇ아니냐?!
     // -> 정답은X, Spring은 멀티쓰레드 환경이고 싱글톤 패턴으로 생성하더라도 전역에서 사용중
     //    또한, 생성자를 보면 JPAQueryFactory는 entityManager에 의존하고 있다.
@@ -33,7 +28,7 @@ public class MemberRepository {
     private final EntityManager em;
     private final JPAQueryFactory queryFactory;
 
-    public MemberRepository(EntityManager em) {
+    public MemberJpaRepository(EntityManager em) {
         this.em = em;
         queryFactory = new JPAQueryFactory(em);
     }
